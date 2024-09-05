@@ -3,17 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Teacher;
+use App\Models\Enrollment;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
-class TeacherController extends Controller
+class EnrollmentController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index(): View
     {
-        $teachers = Teacher::all();
-        return view('teachers.index')->with('teachers', $teachers);
+        $enrollments = Enrollment::all();
+        return view('enrollments.index')->with('enrollments', $enrollments);
     }
 
     /**
@@ -21,7 +25,7 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        return view('teachers.create');
+        return view('enrollments.create');
     }
 
     /**
@@ -30,17 +34,17 @@ class TeacherController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $input = $request->all();
-        Teacher::create($input);
-        return redirect('teachers')->with('flash_message', 'Teacher Addedd!');
+        Enrollment::create($input);
+        return redirect('enrollments')->with('flash_message', 'Enrollment Addedd!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id): View
+    public function show(string $id)
     {
-        $teachers = Teacher::find($id);
-        return view('teachers.show')->with('teachers', $teachers);
+        $enrollments = Enrollment::find($id);
+        return view('enrollments.show')->with('enrollments', $enrollments);
     }
 
     /**
@@ -48,8 +52,8 @@ class TeacherController extends Controller
      */
     public function edit(string $id): View
     {
-        $teachers = Teacher::find($id);
-        return view('teachers.edit')->with('teachers', $teachers);
+        $enrollments = Enrollment::find($id);
+        return view('enrollments.edit')->with('enrollments', $enrollments);
     }
 
     /**
@@ -57,10 +61,10 @@ class TeacherController extends Controller
      */
     public function update(Request $request, string $id): RedirectResponse
     {
-        $teacher = Teacher::find($id);
+        $enrollments = Enrollment::find($id);
         $input = $request->all();
-        $teacher->update($input);
-        return redirect('teachers')->with('flash_message', 'teacher Updated!');
+        $enrollments->update($input);
+        return redirect('enrollments')->with('flash_message', 'Enrollment Updated!');
     }
 
     /**
@@ -68,7 +72,7 @@ class TeacherController extends Controller
      */
     public function destroy(string $id): RedirectResponse
     {
-        Teacher::destroy($id);
-        return redirect('teachers')->with('flash_message', 'Teacher deleted!');
+        Enrollment::destroy($id);
+        return redirect('enrollments')->with('flash_message', 'Enrollment deleted!');
     }
 }

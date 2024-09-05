@@ -38,9 +38,10 @@
                     <a class="active" href="#home">Home</a>
                     <a href="{{ url('/students') }}">Student</a>
                     <a href="{{ url('/teachers') }}">Teacher</a>
-                    <a href="#Courses">Courses</a>
-                    <a href="#Errollment">Errollment</a>
-                    <a href="#Payment">Payment</a>
+                    <a href="{{ url('/courses') }}">Courses</a>
+                    <a href="{{ url('/batches') }}">Batches</a>
+                    <a href="{{ url('/enrollments') }}">Errollments</a>
+                    <a href="{{ url('/payment') }}">Payment</a>
                 </div>
             </div>
             <div class="col-md-9">
