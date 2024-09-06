@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Batch;
 use App\Models\Enrollment;
+use App\Models\Student;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -25,7 +27,9 @@ class EnrollmentController extends Controller
      */
     public function create()
     {
-        return view('enrollments.create');
+        $batches = Batch::pluck('name', 'id');
+        $students = Student::pluck('name', 'id');
+        return view('enrollments.create', compact('batches', 'students'));
     }
 
     /**
